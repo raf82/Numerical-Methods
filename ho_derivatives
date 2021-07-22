@@ -1,0 +1,43 @@
+import sympy as sp
+from tabulate import tabulate
+
+x = sp.Symbol('x')
+
+#Type the order (n) of the derivative
+
+n = 6
+count = 0
+
+#Select the function (b) below or type a new one
+
+b = 3*x**2+8*x**(1/2)+sp.exp(x)
+#b = sp.cos(x)
+#b = sp.sqrt(1+x)
+#b = sp.ln(x)
+#b = 1/(1-x)
+
+print("Function: ", b)
+
+list1 = []
+list2 = []
+
+while count<n:
+    b1 = sp.diff(b,x)
+    list1.append(b1)
+    b = b1
+    count += 1
+
+for i in range(len(list1)):
+    d1 = i+1
+    list2.append(d1)
+
+list3 = [] 
+
+
+for i, j in zip(list2, list1):
+    list3.append([i,j])
+
+h = ['Nth derivative', 'Derivative']
+
+print("")
+print(tabulate(list3,headers=h,tablefmt='grid'))
